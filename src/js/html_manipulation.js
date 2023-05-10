@@ -345,3 +345,21 @@ function resetTaskAddedToBoard() {
   let taskAdded = document.getElementById("task-added");
   taskAdded.style.transform = "";
 }
+
+/**
+ * Gray all days from yesterday
+ */
+function loadCalenterPreventer() {
+  const today = new Date().toISOString().split('T')[0];
+  const dateInput = document.getElementById('date');
+
+  dateInput.setAttribute('min', today);
+
+  for (let day = new Date(dateInput.getAttribute('min')); day < new Date(); day.setDate(day.getDate() + 1)) {
+    const dayString = day.toISOString().split('T')[0];
+    const dayOption = dateInput.querySelector(`option[value="${dayString}"]`);
+    if (dayOption) {
+      dayOption.disabled = true;
+    }
+  }
+}

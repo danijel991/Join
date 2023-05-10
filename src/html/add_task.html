@@ -72,9 +72,11 @@
                             <div class="uniform-sizing text-19pt dropdown" role="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseContacts" aria-expanded="false"
                                 aria-controls="collapseContacts" id="contact-dropdown">
+                                <input type="text" id="placeboInput">
                                 <span>Select contacts to assign</span>
                                 <img src="../img/select-arrow.png" alt="">
                             </div>
+                            <div id="contact-validation-message" style="color: yellow;"></div>
                             <div class="subtasks-input-area d-none" id="contact-input-area">
                                 <input class="" type="email" placeholder="Contact email" id="contact-input">
                                 <div class="subtask-icons">
@@ -158,15 +160,15 @@
                                         aria-expanded="false" aria-controls="collapseCategory">
                                         <label for="new-category">New category</label>
                                     </div>
-                                    <div onclick="selectCategory('Sales','pink')" class="dropdown-category" role="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseCategory"
+                                    <div onclick="selectCategory('Sales','pink')" class="dropdown-category"
+                                        role="button" data-bs-toggle="collapse" data-bs-target="#collapseCategory"
                                         aria-expanded="false" aria-controls="collapseCategory">
                                         <label for="sales">Sales</label>
                                         <input type="radio" name="category" id="sales" value="Sales">
                                         <div class="category-color-pink"></div>
                                     </div>
-                                    <div onclick="selectCategory('Backoffice','turquoise')" class="dropdown-category" role="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseCategory"
+                                    <div onclick="selectCategory('Backoffice','turquoise')" class="dropdown-category"
+                                        role="button" data-bs-toggle="collapse" data-bs-target="#collapseCategory"
                                         aria-expanded="false" aria-controls="collapseCategory">
                                         <label for="backoffice">Backoffice</label>
                                         <input type="radio" name="category" id="backoffice" value="Backoffice">

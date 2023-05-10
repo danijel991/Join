@@ -406,7 +406,7 @@ body {
   width: 220px;
   height: 53px;
   right: 40px;
-  bottom: 100px;
+  bottom: 75px;
   background-color: #4589ff;
   border: 1px solid #4589ff;
   border-radius: 10px;
@@ -559,7 +559,6 @@ body {
   align-items: center;
   flex-direction: column;
   width: 580px;
-  padding-top: 50px;
 }
 
 .add-contact-input-field {
@@ -638,7 +637,7 @@ input[type="text"],
 }
 
 input:focus {
-  background-color: lightblue;
+  background-color: rgb(255, 255, 255);
 }
 
 /* STYLING ALL FORM FIELDS */

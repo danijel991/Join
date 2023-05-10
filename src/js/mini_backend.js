@@ -1,5 +1,5 @@
 let jsonFromServer = {};
-let BASE_SERVER_URL = 'https://gruppe-391.developerakademie.net/smallest_backend_ever';
+let BASE_SERVER_URL = 'https://danijel-savkovic.developerakademie.net/Join/smallest_backend_ever';
 
 const backend = {
     setItem: function(key, item) {

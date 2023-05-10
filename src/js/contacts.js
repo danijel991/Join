@@ -11,7 +11,6 @@ let priorLetter; //sets the last letter for the Alphabet Registery
 async function loadAllContacts() {
   await init();
   renderContactList();
-  showDeleteButton();
 }
 
 /**

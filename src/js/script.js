@@ -150,14 +150,6 @@ async function loadUserContactsFromBackend() {
 }
 
 /**
- * function displays red alert button before final deletion of all active user contacts in Backend 
- */
-function deleteUserContacts() {
-  document.getElementById("delete-contact-button").classList.add("d-none");
-  document.getElementById("delete-contact-button-alert").classList.remove("d-none");
-}
-
-/**
  * function aborts deletion
  */
 function abortDeleteContacts() {

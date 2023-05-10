@@ -20,6 +20,7 @@ async function initBoard() {
   await loadUserTasksFromBackend();
   addToBoard();
   getHighlight();
+  loadCalenterPreventer();
 }
 
 /**
@@ -35,6 +36,24 @@ function addToBoard() {
     // console.timeEnd("Board Loading Time");
   }
 }
+
+/**
+ * Gray all days from yesterday
+ */
+// function loadCalenterPreventer() {
+//   const today = new Date().toISOString().split('T')[0];
+//   const dateInput = document.getElementById('date');
+
+//   dateInput.setAttribute('min', today);
+
+//   for (let day = new Date(dateInput.getAttribute('min')); day < new Date(); day.setDate(day.getDate() + 1)) {
+//     const dayString = day.toISOString().split('T')[0];
+//     const dayOption = dateInput.querySelector(`option[value="${dayString}"]`);
+//     if (dayOption) {
+//       dayOption.disabled = true;
+//     }
+//   }
+// }
 
 /**
  * The function filters the task and generate the task on board ;

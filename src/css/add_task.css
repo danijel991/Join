@@ -2,6 +2,17 @@
     color: #D1D1D1;
 }
 
+#placeboInput {
+    width: 0;
+    height: 0;
+    border: 0;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+    left: 46%;
+  }
+
 main {
     cursor: default;
 }

@@ -340,7 +340,7 @@
     height: 80%;
     width: 623px;
     border-radius: 30px;
-    padding: 50px;
+    padding: 35px 40px;
     transform: translateY(950px);
     transition: all 225ms ease-in-out;
 }

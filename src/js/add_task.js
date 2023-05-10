@@ -8,6 +8,7 @@ let taskAddedAtAddTaskHTML = false;
 async function init_add_task() {
   await init();
   renderContactsInDropDown();
+  loadCalenterPreventer();
 }
 
 /**
@@ -298,10 +299,10 @@ function readSubtasks() {
  * @returns The information inserted by the user.
  */
 async function createTask(path) {
-  let title = document.getElementById("title").value;
+  let title = document.getElementById("placeboInput").value;
   let contactsCheckedBoxes = getCheckedBoxes("assign-contacts");
   if (contactsCheckedBoxes == null) {
-    let validation = document.getElementById("title");
+    let validation = document.getElementById("placeboInput");
     validation.setCustomValidity("Must set at least one contact");
     validation.reportValidity();
     return;

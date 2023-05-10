@@ -19,17 +19,6 @@ function openContactDetail(index) {
 }
 
 /**
- * function makes the div visible that includes the delete button
- */
-function showDeleteButton() {
-  if (getEmails()) {
-    document.getElementById("delete-contact-button").classList.remove("d-none");
-  } else {
-    document.getElementById("delete-contact-button").classList.add("d-none");
-  }
-}
-
-/**
  * function adds style to initiate slide-in CSS animation
  */
 function slideOut() {
