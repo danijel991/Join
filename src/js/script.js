@@ -168,6 +168,27 @@ async function loadUserTasksFromBackend() {
 }
 
 
+
+
+
+async function loadUserCategoryFromBackend() {
+  console.log('load category from backend');
+  
+}
+
+async function saveInBackendUserCategory() {
+  console.log('save category to backend');
+  activeUserEmail = activeUser["userEmail"];
+  await backend.setItem(`${activeUserEmail}_usercategories`, JSON.stringify(tasks));
+}
+
+
+
+
+
+
+
+
 /***    Log In  &  Log Out  ***/
 /**
  * The function does the procceses for the "Log In". 

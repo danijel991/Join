@@ -67,6 +67,11 @@ function addNewCategory() {
   document.getElementById("collapseCategory").innerHTML += generateCategoryHTML(category, color);
   closeCategoryInput();
   selectCategory(category, color);
+  saveCategory(category, color);
+}
+
+function saveCategory(category, color) {
+  console.log('save', category + color)
 }
 
 /**
@@ -299,13 +304,13 @@ function readSubtasks() {
  * @returns The information inserted by the user.
  */
 async function createTask(path) {
-  let title = document.getElementById("placeboInput").value;
+  let title = document.getElementById("title").value;
   let contactsCheckedBoxes = getCheckedBoxes("assign-contacts");
+  let validation = document.getElementById("placeboInput");
   if (contactsCheckedBoxes == null) {
-    let validation = document.getElementById("placeboInput");
     validation.setCustomValidity("Must set at least one contact");
     validation.reportValidity();
-    return;
+    // return;
   }
   let date = document.getElementById("date").value;
   let category = document.getElementById("category-dropdown").textContent;
@@ -320,7 +325,8 @@ async function createTask(path) {
   } else {
     createNewTask(tasks.length, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
   }
-  clearAddTaskInputFields();
+  // clearAddTaskInputFields();
+  moveToBorad();
 }
 
 /**
@@ -426,4 +432,8 @@ function resetAddTaskForm() {
     "category-dropdown"
   ).innerHTML = `<span>Select task category</span><img src="../img/select-arrow.png" alt="">`;
   document.getElementById("category-dropdown").classList.remove("dropdown-active");
+}
+
+function moveToBorad() {
+  window.location.href = "./board.html";
 }

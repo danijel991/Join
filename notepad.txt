@@ -1,3 +1,1 @@
-<input type="text" id="placeboInput">
-
-<span>Select contacts to assign</span>
+window.location.href = "http://example.com/new_url";
