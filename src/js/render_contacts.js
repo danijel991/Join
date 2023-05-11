@@ -175,17 +175,17 @@ function generateContactEditDialog(index) {
                             <div class="add-contact-input-field">
                                 <input id="edit-contact-name" class="contact-form-control contacts_input" type="text"
                                     placeholder="Name" required>
-                                <img src="/src/img/input_name.png" alt="">
+                                <img src="../img/input_name.png" alt="">
                             </div>
                             <div class="add-contact-input-field">
                                 <input id="edit-contact-email" class="contact-form-control contacts_input " type="email"
                                     placeholder="Email" required>
-                                <img src="/src/img/input_mail.png" alt="">
+                                <img src="../img/input_mail.png" alt="">
                             </div>
                             <div class="add-contact-input-field">
                                 <input id="edit-contact-phone" class="contact-form-control contacts_input " type="number"
                                     pattern="" placeholder="Phone" required>
-                                <img src="/src/img/phone_icon.png" alt="">
+                                <img src="../img/phone_icon.png" alt="">
                             </div>
                             <div class="edit-contact-buttons">
                             <button type="submit" class="edit-contact-button" required>

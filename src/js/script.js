@@ -149,27 +149,6 @@ async function loadUserContactsFromBackend() {
   activeUserContacts = JSON.parse(backend.getItem(`${activeUserEmail}`)) || [];
 }
 
-/**
- * function aborts deletion
- */
-function abortDeleteContacts() {
-  document.getElementById("delete-contact-button").classList.remove("d-none");
-  document.getElementById("delete-contact-button-alert").classList.add("d-none");
-}
-
-/**
- * function deletes all specific active user contacts in Backend, which are save under this key 'activeUserEmail'
- */
-async function executeDeleteContacts() {
-  document.getElementById("delete-contact-button-alert").classList.add("d-none");
-  await backend.deleteItem(`${activeUserEmail}`);
-  activeUserContacts = [];
-  document.getElementById("contact-list").innerHTML = "";
-  document.getElementById("contact-detail").innerHTML = "";
-  console.log("Deleted all contacts of: ", activeUserEmail);
-}
-
-
 //// BACKEND Tasks
 /**
  * function saves all tasks of active user in Backend under this key 'activeUserEmail_task'

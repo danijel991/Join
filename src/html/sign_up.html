@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/src/css/log_in.css">
-    <link rel="stylesheet" href="/src/css/signUp_forgot.css">
-    <link rel="stylesheet" href="/src/css/fonts.css">
-    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="/src/img/logo_blue.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/log_in.css">
+    <link rel="stylesheet" href="../css/signUp_forgot.css">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../img/logo_blue.png" type="image/x-icon">
 
-    <script src="/src/js/logIn_register.js"></script>
-    <script src="/src/js/html_manipulation.js"></script>
-    <script src="/src/js/script.js"></script>
-    <script src="/src/js/mini_backend.js"></script>
+    <script src="../js/logIn_register.js"></script>
+    <script src="../js/html_manipulation.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/mini_backend.js"></script>
     <title>Join - Sign up</title>
 
 </head>
@@ -22,12 +22,12 @@
 <body onload="loadUsersFromBackend()">
     <div id="signUp__id--main" class="forgot__file--wrapper">
         <div id="logo_container" class="logo__container logo__position">
-            <img src="/src/img/logo_white.png" alt="">
+            <img src="../img/logo_white.png" alt="">
         </div>
         <div class="logIn__wrapper">
             <div class="logIn__frame signUp__frame">
                 <a href="../../index.html">
-                    <img class="arrow_back" src="/src/img/arrow_back.png" alt="">
+                    <img class="arrow_back" src="../img/arrow_back.png" alt="">
                 </a>
                 <div class="forgot__text--wrapper ">
                     <h1 class="logIn__title signUp__title">Sign up</h1>
@@ -36,18 +36,17 @@
                     <div class="logIn_input--container">
                         <input id="newUser-name" class="form-control logIn__input" type="text" placeholder="Name"
                             required>
-                        <img src="/src/img/input_name.png" alt="">
+                        <img src="../img/input_name.png" alt="">
                     </div>
                     <div class="logIn_input--container">
                         <input id="newUser-email" class="form-control logIn__input" type="email" placeholder="Email"
                             required>
-                        <img src="/src/img/input_mail.png" alt="">
-                    </div>
+                            <img src="../img/input_mail.png" alt="">                        </div>
                     <div id="signUp__validation" class="logIn__validation d-none"></div>
                     <div class="logIn_input--container">
                         <input id="newUser-password" class="form-control logIn__input" type="password"
                             placeholder="Password" required minlength="4">
-                        <img src="/src/img/input_password.png" alt="">
+                        <img src="../img/input_password.png" alt="">
                     </div>
                     <div class="logIn__buttons">
                         <button class="btn logIn__btn--user">Sign up</button>

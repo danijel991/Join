@@ -6,7 +6,7 @@ let alphabetLetters = []; //takes all first letters of activeUserContacts in alp
 let priorLetter; //sets the last letter for the Alphabet Registery
 
 /**
- * -loads all contacts into contact-details and checks. If contacts do exist, a contact delete button will be displayed
+ * -loads all contacts into contact-details and checks. If contacts do exist
  */
 async function loadAllContacts() {
   await init();
@@ -37,7 +37,6 @@ async function addNewUserContact() {
   activeUserContacts.push(newContact);
   await saveInBackendUserContacts();
   await loadAllContacts(); // refreshing contacts in contacts.html
-  document.getElementById("delete-contact-button").classList.remove("d-none");
   let j = getIndexOfEmail(newmail);
   openContactDetail(j);
   clearContent();

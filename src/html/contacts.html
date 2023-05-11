@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/style_media.css">
     <link rel="stylesheet" href="../css/contacts.css">
-    <link rel="stylesheet" href="/src/css/log_in.css">
+    <link rel="stylesheet" href="../css/log_in.css">
     <link rel="stylesheet" href="../css/fonts.css">
-    <link rel="shortcut icon" href="/src/img/logo_blue.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../img/logo_blue.png" type="image/x-icon">
     <!-- BOOTSTRAP INTEGRATION START-->
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -39,17 +39,6 @@
                 <span>New contact</span><img src="../img/addcontact.png">
             </button>
         </div>
-        <div id="delete-contact-button-alert" class="delete-contact-button-alert d-none">
-
-            <span><b>Sure to delete all contacts?</b></span>
-            <div class="delete-contact-button-bottom">
-                <div><a onclick="executeDeleteContacts()">YES</a></div>
-
-                <div><a onclick="abortDeleteContacts()">NO</a></div>
-            </div>
-
-            </button>
-        </div>
 
         <!-- MODAL CONTENT NEW CONTACT-->
         <div class="overlay d-none" onclick="closeAddContactDialog()" id="overlay">
@@ -69,17 +58,17 @@
                             <div class="add-contact-input-field">
                                 <input id="new-contact-name" class="contact-form-control contacts_input " type="text"
                                     placeholder="Name" required>
-                                <img src="/src/img/input_name.png" alt="">
+                                <img src="../img/input_name.png" alt="">
                             </div>
                             <div class="add-contact-input-field">
                                 <input id="new-contact-email" class="contact-form-control contacts_input " type="email"
                                     placeholder="Email" required>
-                                <img src="/src/img/input_mail.png" alt="">
+                                <img src="../img/input_mail.png" alt="">
                             </div>
                             <div class="add-contact-input-field">
                                 <input id="new-contact-phone" class="contact-form-control contacts_input " type="number"
                                     pattern="" placeholder="Phone" required>
-                                <img src="/src/img/phone_icon.png" alt="">
+                                <img src="../img/phone_icon.png" alt="">
                             </div>
                             <div class="create-btn-flexdiv">
                                 <button class="create-contact-button" type="submit" required>
