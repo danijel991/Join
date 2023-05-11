@@ -83,7 +83,8 @@ async function setActiveUser(userEmail) {
     let index = checkIfEmailExists(userEmail)
     indexActiveUser = index;
     activeUser = usersArray[indexActiveUser];
-    activeUser.quickAcces = true;
+    if (activeUser)
+        activeUser.quickAcces = true;
 }
 
 
@@ -316,16 +317,26 @@ function checkIfEmailExists(emailUser) {
  * The function is changing the icon of the password.
  */
 function checkPasswordImg() {
+    let state = undefined;
     setInterval(() => {
         let a = 0;
         let input = document.getElementById('password');
         let img = document.getElementById('password__img');
         if (input.value.length > a && passwordVisible) {
-            visiblePasswordImg(input, img);
+            if (state === "visible") {
+                visiblePasswordImg(input, img);
+                state = "visible";
+            }
         } else if (input.value.length > a && !passwordVisible) {
+            if (state === "hidden") {
             hiddenPasswordImg(input, img);
+                state = "hidden";
+            }
         } else {
+            if (state === "default") {
             defaultPasswordImg(img);
+                state = "default";
+            }
         }
     }, 100)
 }

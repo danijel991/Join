@@ -3,7 +3,7 @@ let currentDraggedElement;
 
 /***    Array       ***/
 let tasks = [];
-
+let usercategories = [];
 /**
  * boolean to mark if tasks are currently comming from editTasks dialog
  */

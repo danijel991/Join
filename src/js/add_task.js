@@ -9,6 +9,7 @@ async function init_add_task() {
   await init();
   renderContactsInDropDown();
   loadCalenterPreventer();
+  renderCategoryDropDown();
 }
 
 /**
@@ -70,8 +71,30 @@ function addNewCategory() {
   saveCategory(category, color);
 }
 
-function saveCategory(category, color) {
-  console.log('save', category + color)
+async function saveCategory(category, color) {
+  usercategories.push({ category, color })
+  await saveInBackendUserCategories();
+  await loadCategoriesTasksFromBackend();
+  renderCategoryDropDown();
+}
+
+function renderCategoryDropDown() {
+  content = document.getElementById("collapseCategory");
+  content.innerHTML = `<div onclick="openCategoryInput()" class="dropdown-category" role="button"
+  data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false"
+  aria-controls="collapseCategory">
+  <label for="new-category">New category</label>
+</div>
+`;
+
+  content.innerHTML += generateCategoryHTML(`Sales`, `pink`);
+  content.innerHTML += generateCategoryHTML(`Backoffice`, `turquoise`);
+  for (let i = 0; i < usercategories.length; i++) {
+    let category = usercategories[i];
+    content.innerHTML += generateCategoryHTML(category.category, category.color);
+
+
+  }
 }
 
 /**
@@ -310,8 +333,13 @@ async function createTask(path) {
   if (contactsCheckedBoxes == null) {
     validation.setCustomValidity("Must set at least one contact");
     validation.reportValidity();
-    // return;
+    return;
+  } else {
+    validation.setCustomValidity("");
+    validation.reportValidity();
   }
+
+
   let date = document.getElementById("date").value;
   let category = document.getElementById("category-dropdown").textContent;
   let urgency = document.querySelector('input[name="prio"]:checked').value;
@@ -326,7 +354,7 @@ async function createTask(path) {
     createNewTask(tasks.length, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
   }
   // clearAddTaskInputFields();
-  moveToBorad();
+  toBoard();
 }
 
 /**
@@ -432,8 +460,4 @@ function resetAddTaskForm() {
     "category-dropdown"
   ).innerHTML = `<span>Select task category</span><img src="../img/select-arrow.png" alt="">`;
   document.getElementById("category-dropdown").classList.remove("dropdown-active");
-}
-
-function moveToBorad() {
-  window.location.href = "./board.html";
 }

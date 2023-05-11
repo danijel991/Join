@@ -230,6 +230,11 @@ function generateContactDetail(index, name, initials, initialsColor, email, phon
         <div class="contact-information">Contact Information</div>
         <div class="edit-contact" onclick="openEditContactDialog(${index})"><img  onclick="openEditContactDialog()"src="../img/pencil_small.png">Edit Contact</div>
     </div>
+    <div>
+    <button class="delete-contact-button" onclick="deleteContact(${index})">
+    <span>Delete</span><img src="../img/close_icon.png">
+</button>
+</div>
     <div class="contact-detail-bold">Email</div>
     <a class="contact-detail-medium" href="mailto:${email}">${email}</a>
     <div class="contact-detail-bold">Phone</div>

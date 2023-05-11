@@ -27,6 +27,7 @@ async function init() {
   await getActiveUser();
   await loadUserContactsFromBackend();
   await loadUserTasksFromBackend();
+  await loadCategoriesTasksFromBackend();
   getHighlight();
 }
 
@@ -137,7 +138,7 @@ async function saveInBackend() {
  */
 async function saveInBackendUserContacts() {
   activeUserEmail = activeUser["userEmail"];
-  await backend.setItem(`${activeUserEmail}`, JSON.stringify(activeUserContacts));
+  await backend.setItem(`${activeUserEmail}_contacts`, JSON.stringify(activeUserContacts));
 }
 
 /**
@@ -146,7 +147,7 @@ async function saveInBackendUserContacts() {
 async function loadUserContactsFromBackend() {
   activeUserEmail = activeUser["userEmail"];
   await downloadFromServer();
-  activeUserContacts = JSON.parse(backend.getItem(`${activeUserEmail}`)) || [];
+  activeUserContacts = JSON.parse(backend.getItem(`${activeUserEmail}_contacts`)) || [];
 }
 
 //// BACKEND Tasks
@@ -155,32 +156,33 @@ async function loadUserContactsFromBackend() {
  */
 async function saveInBackendUserTasks() {
   activeUserEmail = activeUser["userEmail"];
-  await backend.setItem(`${activeUserEmail}_task`, JSON.stringify(tasks));
+  await backend.setItem(`${activeUserEmail}_tasks`, JSON.stringify(tasks));
 }
 
 /**
  * function loads all active user tasks from Backend
  */
 async function loadUserTasksFromBackend() {
-  activeUserTasks = `${activeUser["userEmail"]}_task`;
-  await downloadFromServer();
-  tasks = JSON.parse(backend.getItem(activeUserTasks)) || [];
-}
-
-
-
-
-
-async function loadUserCategoryFromBackend() {
-  console.log('load category from backend');
-  console.log('load category from backend');
-  
-}
-
-async function saveInBackendUserCategory() {
-  console.log('save category to backend');
   activeUserEmail = activeUser["userEmail"];
-  await backend.setItem(`${activeUserEmail}_usercategories`, JSON.stringify(tasks));
+  await downloadFromServer();
+  tasks = JSON.parse(backend.getItem(`${activeUserEmail}_tasks`)) || [];
+}
+
+
+
+
+async function saveInBackendUserCategories() {
+  activeUserEmail = activeUser["userEmail"];
+  await backend.setItem(`${activeUserEmail}_categories`, JSON.stringify(usercategories));
+}
+
+/**
+ * function loads all active user tasks from Backend
+ */
+async function loadCategoriesTasksFromBackend() {
+  activeUserEmail = activeUser["userEmail"];
+  await downloadFromServer();
+  usercategories = JSON.parse(backend.getItem(`${activeUserEmail}_categories`)) || [];
 }
 
 
@@ -211,9 +213,9 @@ async function logInUser() {
  * The function does log is the previous user, if "Remember me" was selected.
  */
 async function logInByQuickAcces() {
-  if (localStorage.getItem("activeUser") !== null) {
+  if (localStorage.getItem("activeUser")) {
     let stringStorage = localStorage.getItem("activeUser");
-    activeUser = await JSON.parse(stringStorage);
+    activeUser = JSON.parse(stringStorage);
   }
   if (activeUser.quickAcces == true) {
     let acces = activeUser.quickAcces;
@@ -221,7 +223,6 @@ async function logInByQuickAcces() {
     goToSummary(acces, emailUser);
   }
 }
-
 
 /**
  * The function does the procceses for the "Log Out". 
@@ -244,7 +245,9 @@ async function checkIfRmemberMe(emailUser) {
   let checkbox = callCheckBox();
   if (checkbox == true) {
     await setActiveUser(emailUser);
-    activeUser.quickAcces = true;
+    if (activeUser) {
+      activeUser.quickAcces = true;
+    }
     await saveLocalActiveUser(activeUser)
   } else if (checkbox = false) {
     await deleteLocalActiveUser(activeUser);

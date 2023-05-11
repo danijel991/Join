@@ -207,3 +207,11 @@ function setColorForInitial(initials) {
     return "rgb(253,197,38)";
   } else return "rgb(128,168,77)";
 }
+
+async function deleteContact(index) {
+  activeUserContacts.splice(index, 1);
+  await saveInBackendUserContacts();
+  await loadAllContacts();
+  clearContent();
+  slideOut();
+}
