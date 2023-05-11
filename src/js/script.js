@@ -173,6 +173,7 @@ async function loadUserTasksFromBackend() {
 
 async function loadUserCategoryFromBackend() {
   console.log('load category from backend');
+  console.log('load category from backend');
   
 }
 
