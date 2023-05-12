@@ -343,7 +343,7 @@ async function createTask(path) {
   }
 }
 
-validation.setCustomValidity("Must set at least one contact");
+// validation.setCustomValidity("Must set at least one contact");
 
 
 function ckeckValidity() {
@@ -353,7 +353,7 @@ function ckeckValidity() {
   reportValidity();
 }
 
-function returnValidEditTask() {
+async function returnValidEditTask() {
 
   let validation = document.getElementById("placeboInput"); //placebo placeholder for select contacts message
   let title = document.getElementById("title").value;
@@ -367,7 +367,7 @@ function returnValidEditTask() {
 
   if (path == true) {
     taskAddedAtAddTaskHTML = true;
-    await addTaskCreateTask(tasks.length, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
+    await  addTaskCreateTask(tasks.length, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
   } else {
     await createNewTask(tasks.length, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
   }
@@ -375,11 +375,16 @@ function returnValidEditTask() {
   toBoard();
 }
 
-
-
 function isAddTaskValid() {
+  if (document.getElementById('title').value.length > 0
+    && document.getElementById('description').value.length > 0) {
+    return true;
+  }
   return false;
 }
+
+
+
 
 /**
  * The function does create and save a new "Task". Afterwords does update the coresponding area.
