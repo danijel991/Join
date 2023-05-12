@@ -10,6 +10,7 @@ async function init_add_task() {
   renderContactsInDropDown();
   loadCalenterPreventer();
   renderCategoryDropDown();
+  document.getElementById("placeboInput").setCustomValidity("Must set at least one contact");
 }
 
 /**
@@ -327,17 +328,36 @@ function readSubtasks() {
 async function createTask(path) {
   let title = document.getElementById("title").value;
   let contactsCheckedBoxes = getCheckedBoxes("assign-contacts");
-  let validation = document.getElementById("placeboInput");
+  let validation = document.getElementById("placeboInput"); //placebo placeholder for select contacts message
   if (contactsCheckedBoxes == null) {
-    validation.setCustomValidity("Must set at least one contact");
     validation.reportValidity();
     return;
-  } else {
-    validation.setCustomValidity("");
-    validation.reportValidity();
+  // } else {
+  //   validation.setCustomValidity("");
+  //   validation.reportValidity();
   }
 
+  if (isAddTaskValid()) {
 
+    reportValidity();
+  }
+}
+
+validation.setCustomValidity("Must set at least one contact");
+
+
+function ckeckValidity() {
+  !isTitleValid();
+  reportValidity();
+  !isContactsAssignedValid()
+  reportValidity();
+}
+
+function returnValidEditTask() {
+
+  let validation = document.getElementById("placeboInput"); //placebo placeholder for select contacts message
+  let title = document.getElementById("title").value;
+  let contactsCheckedBoxes = getCheckedBoxes("assign-contacts");
   let date = document.getElementById("date").value;
   let category = document.getElementById("category-dropdown").textContent;
   let urgency = document.querySelector('input[name="prio"]:checked').value;
@@ -353,6 +373,12 @@ async function createTask(path) {
   }
   // clearAddTaskInputFields();
   toBoard();
+}
+
+
+
+function isAddTaskValid() {
+  return false;
 }
 
 /**
