@@ -10,8 +10,6 @@ async function init_add_task() {
   renderContactsInDropDown();
   loadCalenterPreventer();
   renderCategoryDropDown();
-  let validityCustom = document.getElementById("placeboInput");
-  validityCustom.setCustomValidity("Must set at least one contact");
 }
 
 /**
@@ -327,40 +325,14 @@ function readSubtasks() {
  * @returns The information inserted by the user.
  */
 async function createTask(path) {
-  let title = document.getElementById("title").value;
-  let contactsCheckedBoxes = getCheckedBoxes("assign-contacts");
-  let validation = document.getElementById("placeboInput"); //placebo placeholder for select contacts message
-  if (contactsCheckedBoxes == null) {
-    validation.reportValidity();
+  if (!isAddTaskValid()) {
     return;
-    // } else {
-    //   validation.setCustomValidity("");
-    //   validation.reportValidity();
   }
 
-  if (isAddTaskValid()) {
-
-    reportValidity();
-  }
-}
-
-// validation.setCustomValidity("Must set at least one contact");
-
-
-function ckeckValidity() {
-  !isTitleValid();
-  reportValidity();
-  !isContactsAssignedValid()
-  reportValidity();
-}
-
-async function returnValidEditTask() {
-
-  let validation = document.getElementById("placeboInput"); //placebo placeholder for select contacts message
   let title = document.getElementById("title").value;
   let contactsCheckedBoxes = getCheckedBoxes("assign-contacts");
   let date = document.getElementById("date").value;
-  let category = document.getElementById("category-dropdown").textContent;
+  let category = document.getElementById("category-dropdown").textContent.trimEnd();
   let urgency = document.querySelector('input[name="prio"]:checked').value;
   let description = document.getElementById("description-text").value;
   let color = document.querySelector("input[type=radio][name=color]:checked").value;
@@ -377,11 +349,51 @@ async function returnValidEditTask() {
 }
 
 function isAddTaskValid() {
-  if (document.getElementById('title').value.length > 0
-    && document.getElementById('description').value.length > 0) {
-    return true;
+  let title = document.getElementById('title');
+  if (!title.value) {
+    title.reportValidity();
+    return false;
   }
-  return false;
+
+  let contactsCheckedBoxes = getCheckedBoxes('assign-contacts');
+  let contactValidation = document.getElementById('contactsValidation');
+  if (!contactsCheckedBoxes) {
+    contactValidation.setCustomValidity('Must set at least one contact');
+    contactValidation.reportValidity();
+    return false;
+  } else {
+    contactValidation.setCustomValidity('');
+  }
+
+  let date = document.getElementById('date');
+  let today = new Date().toISOString().split('T')[0];
+  date.setAttribute("min", today)
+  if (!date.value || !date.validity.valid) {
+    date.reportValidity();
+    return false;
+  }
+
+  let color = document.querySelector('input[type=radio][name="color"]:checked');
+  let categoryValidation = document.getElementById('categoryValidation');
+  if (!color) {
+    categoryValidation.setCustomValidity('Must select a category');
+    categoryValidation.reportValidity();
+    return false;
+  } else {
+    categoryValidation.setCustomValidity('');
+  }
+
+  let urgency = document.querySelector('input[name="prio"]:checked');
+  let urgencyValidation = document.getElementById('urgencyValidation');
+  if (!urgency) {
+    urgencyValidation.setCustomValidity('Must set urgency');
+    urgencyValidation.reportValidity();
+    return false;
+  } else {
+    urgencyValidation.setCustomValidity('');
+  }
+
+  return true;
 }
 
 

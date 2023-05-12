@@ -1,4 +1,6 @@
 /node_modules
+/.idea
+/.vscode
 git
 summary-backup.html
 smallest_backend_ever
