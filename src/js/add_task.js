@@ -10,7 +10,8 @@ async function init_add_task() {
   renderContactsInDropDown();
   loadCalenterPreventer();
   renderCategoryDropDown();
-  document.getElementById("placeboInput").setCustomValidity("Must set at least one contact");
+  let validityCustom = document.getElementById("placeboInput");
+  validityCustom.setCustomValidity("Must set at least one contact");
 }
 
 /**
@@ -332,9 +333,9 @@ async function createTask(path) {
   if (contactsCheckedBoxes == null) {
     validation.reportValidity();
     return;
-  // } else {
-  //   validation.setCustomValidity("");
-  //   validation.reportValidity();
+    // } else {
+    //   validation.setCustomValidity("");
+    //   validation.reportValidity();
   }
 
   if (isAddTaskValid()) {
@@ -367,7 +368,7 @@ async function returnValidEditTask() {
 
   if (path == true) {
     taskAddedAtAddTaskHTML = true;
-    await  addTaskCreateTask(tasks.length, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
+    await addTaskCreateTask(tasks.length, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
   } else {
     await createNewTask(tasks.length, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
   }
