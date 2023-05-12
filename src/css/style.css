@@ -167,6 +167,10 @@ header {
   color: #42526e;
 }
 
+#legal-notice > span {
+  font-size: 1rem !important;
+}
+
 
 /* MAIN ///////////////////////////////////////////// */
 

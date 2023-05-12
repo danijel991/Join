@@ -92,8 +92,6 @@ function renderCategoryDropDown() {
   for (let i = 0; i < usercategories.length; i++) {
     let category = usercategories[i];
     content.innerHTML += generateCategoryHTML(category.category, category.color);
-
-
   }
 }
 
@@ -349,9 +347,9 @@ async function createTask(path) {
 
   if (path == true) {
     taskAddedAtAddTaskHTML = true;
-    addTaskCreateTask(tasks.length, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
+    await addTaskCreateTask(tasks.length, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
   } else {
-    createNewTask(tasks.length, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
+    await createNewTask(tasks.length, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
   }
   // clearAddTaskInputFields();
   toBoard();
