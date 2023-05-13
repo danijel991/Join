@@ -83,7 +83,6 @@ async function getActiveUser() {
     activeUser = await JSON.parse(stringStorage);
     activeUser.quickAcces = true;
   } else if (localStorage.getItem("activeUser") === null) {
-    console.log("No Local Storage");
     await setActiveUser(collectActiveUserFromURL())
     await saveLocalActiveUser(activeUser)
   }
@@ -185,13 +184,6 @@ async function loadCategoriesTasksFromBackend() {
   usercategories = JSON.parse(backend.getItem(`${activeUserEmail}_categories`)) || [];
 }
 
-
-
-
-
-
-
-
 /***    Log In  &  Log Out  ***/
 /**
  * The function does the procceses for the "Log In". 
@@ -200,14 +192,11 @@ async function logInUser() {
   let emailUser = document.getElementById("email").value;
   let passwordUser = document.getElementById("password").value;
   let acces = await checkIfExists(emailUser, passwordUser);
-  console.log("Log In Before:", activeUser);
   await checkIfRmemberMe(emailUser);
   goToSummary(acces, emailUser); // goes to login-register.js line 154 to pass email with url
-  console.log("Log In After:", activeUser);
   emailUser.value = "";
   passwordUser = "";
 }
-
 
 /**
  * The function does log is the previous user, if "Remember me" was selected.
@@ -234,7 +223,6 @@ async function logOut() {
   }
   toLogInPage();
 }
-
 
 /**
  * The funtion is checking if the user decided to be saved local.

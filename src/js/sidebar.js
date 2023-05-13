@@ -8,7 +8,6 @@ function toSummary() {
     window.location.href = "../html/summary.html?" + params.toString();
 }
 
-
 /**
  * The functions is providing the User Email to Board Page
  */
@@ -18,7 +17,6 @@ function toBoard() {
     let userEmail = JSON.parse(params.get("second"));
     window.location.href = "../html/board.html?" + params.toString();
 }
-
 
 /**
  * The functions is providing the User Email to Add Task Page
@@ -40,7 +38,6 @@ function toContacts() {
     window.location.href = "../html/contacts.html?" + params.toString();
 }
 
-
 /**
  * The functions is providing the User Email to Legal Notice Page
  */
@@ -50,7 +47,6 @@ function toLegalNotice() {
     let userEmail = JSON.parse(params.get("second"));
     window.location.href = "../html/legal_notice.html?" + params.toString();
 }
-
 
 /**
  * The functions is providing the User Email to Help Page
@@ -62,7 +58,6 @@ function toHelp() {
     window.location.href = "../html/help.html?" + params.toString();
 }
 
-
 /**
  * The function is getting the location in order si highlight the sidebar.
  */
@@ -70,7 +65,6 @@ function getHighlight() {
     let pathname = this.location.pathname;
     let location = getLocation(pathname);
 }
-
 
 /**
  * The function is adding a class in order to highlight the button.

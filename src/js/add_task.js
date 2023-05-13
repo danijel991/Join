@@ -1,6 +1,7 @@
 let selectedCategory;
 let selectedColor;
 let taskAddedAtAddTaskHTML = false;
+let counter = 0;
 
 /**
  * function renders actual contacts of active user in drop-down menue of Add-Task Dialog
@@ -60,7 +61,7 @@ function generateCategoryHTML(category, color) {
 }
 
 /**
- * reads user input in AddTask Dialog
+ * This adds new categories to the drop-down
  */
 function addNewCategory() {
     let category = document.getElementById("category-input").value;
@@ -71,13 +72,22 @@ function addNewCategory() {
     saveCategory(category, color);
 }
 
+/**
+ * this saves category
+ * @param category
+ * @param color
+ * @returns {Promise<void>}
+ */
 async function saveCategory(category, color) {
-    usercategories.push({category, color})
+    usercategories.push({ category, color })
     await saveInBackendUserCategories();
     await loadCategoriesTasksFromBackend();
     renderCategoryDropDown();
 }
 
+/**
+ * this renders category dropdown
+ */
 function renderCategoryDropDown() {
     content = document.getElementById("collapseCategory");
     content.innerHTML = `<div onclick="openCategoryInput()" class="dropdown-category" role="button"

@@ -11,7 +11,7 @@
     pointer-events: none;
     z-index: -1;
     left: 46%;
-  }
+}
 
 main {
     cursor: default;
@@ -184,9 +184,34 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-bottom: 8px;
 }
 
+.inviteContact {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#new-contact {
+    max-width: 260px;
+}
+
 .subtasks-input-area>input {
     padding: 14px 0 14px 21px
 }
+
+.inviteContactClickables {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 60px;
+}
+
+.invalid-email:invalid {
+    border: 2px solid red;
+  }
 
 .subtasks-input-border-input {
     border: 0;
@@ -469,7 +494,7 @@ input[name="prio"] {
     position: fixed;
     top: 50%;
     transition: all 550ms ease-in-out;
-    transform: translate(-400%) ;
+    transform: translate(-400%);
     /* left: 100%; */
 }
 

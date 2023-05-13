@@ -4,18 +4,13 @@
  * @param {integer} index
  */
 function openContactDetail(index) {
-  setTimeout(() => {
-    document.getElementById("contact-detail").classList.remove("slide-in");
-  }, 20);
-
-  let content = document.getElementById("contact-detail");
-  let { email, initials, initialsColor, name, phone } = getContactDetails(index);
-
-  content.innerHTML = "";
-  content.innerHTML = generateContactDetail(index, name, initials, initialsColor, email, phone);
-  setTimeout(() => {
-    document.getElementById("contact-detail").classList.add("slide-in");
-  }, 200);
+  setTimeout(() => document.getElementById("contact-detail").classList.remove("slide-in"), 20);
+  const content = document.getElementById("contact-detail");
+  const { email, initials, initialsColor, name, phone } = getContactDetails(index);
+  content.innerHTML = `
+    ${generateContactDetail(index, name, initials, initialsColor, email, phone)}
+  `;
+  setTimeout(() => document.getElementById("contact-detail").classList.add("slide-in"), 200);
 }
 
 /**
@@ -249,8 +244,134 @@ function generateContactDetail(index, name, initials, initialsColor, email, phon
  * function gets arry activeUserContacts and renders drop-down in Add-Task Dialog
  */
 function renderContactsInDropDown() {
-  content = document.getElementById("collapseContacts");
-  content.innerHTML = " ";
+  let content = document.getElementById("collapseContacts");
+  content.innerHTML = "";
+
+  if (content.innerHTML.length === 0) {
+    content.innerHTML += `
+
+    <div class="dropdown-contact" onclick="inviteContact('contact-dropdown-edit', 'contact-input-area-edit', 'contact-input-edit')" role="button" data-bs-toggle="collapse"
+    data-bs-target="#collapseContactsEdit" aria-expanded="false" aria-controls="collapseContactsEdit" id="contact-dropdown-edit">
+        <label for="">Invite new contact</label>
+        <img src="../img/new-contact-icon.png" alt="">
+    </div>
+`;
+  }
+  fillActiveUserContacts(content);
+}
+
+
+/**
+ * Fills the given HTML element with checkbox inputs for the active user's contacts.
+ * @param {HTMLElement} content - The HTML element to fill with contacts.
+ */
+function fillActiveUserContacts(content) {
+  for (let i = 0; i < activeUserContacts.length; i++) {
+    let name = activeUserContacts[i]["name"];
+    content.innerHTML += `
+        <div class="dropdown-contact">
+        <label for="${name}">${name}</label>
+        <input type="checkbox" id="${name}" name="assign-contacts" value="${name}">
+    </div>`;
+  }
+}
+
+
+/**
+ * Adds a new contact input field to the task creation form.
+ */
+function inviteContact() {
+  let content = document.getElementById("collapseContacts");
+  let emailInputId = `new-contact-${counter}`;
+  content.innerHTML += `
+    <div class="dropdown-contact" id="inviteContact${counter}">
+      <div class="inviteContact">
+        <input type="email" name="email" id="${emailInputId}" class="form-control logIn__input" placeholder="Enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+        <div class="inviteContactClickables">
+          <img onclick="deleteAddContactBtn(${counter})" class="cursor-pointer" src="../img/cancel-subtask.png" alt="">
+          <img onclick="renderNewContact(${counter})" class="cursor-pointer" src="../img/check-subtask.png" alt="">
+        </div>
+      </div>
+    </div>`;
+  counter++;
+
+  addEmailValidation(emailInputId);
+}
+
+/**
+ * Adds validation to the email input field.
+ * @param {string} inputId - The ID of the input element to be validated.
+ */
+function addEmailValidation(inputId) {
+  // Add event listener to the form
+  const form = document.querySelector('form');
+  form.addEventListener('submit', function (event) {
+    const emailInput = document.getElementById(inputId);
+    if (!emailInput.checkValidity()) {
+      // Add red border to the input element
+      emailInput.classList.add('invalid-email');
+      // Prevent the form from submitting
+      event.preventDefault();
+    }
+  });
+}
+
+/**
+ * Deletes a contact input field from the task creation form.
+ * @param {number} counter - The counter value used to identify the row to be deleted.
+ */
+function deleteAddContactBtn(counter) {
+  let rowToDelete = document.getElementById(`inviteContact${counter}`);
+  rowToDelete.remove();
+}
+
+/**
+ * Renders a new contact to the assigned contacts list.
+ * @param {number} id - The id of the new contact element.
+ */
+function renderNewContact(id) {
+  const input = document.getElementById(`new-contact-${id}`);
+  const email = input.value;
+  if (email && input.checkValidity()) {
+    let content = document.getElementById("collapseContacts");
+    content.innerHTML += `
+      <div class="dropdown-contact">
+        <label for="${email}">${email}</label>
+        <input type="checkbox" id="${email}" name="assign-contacts" value="${email}">
+      </div>
+    `;
+    input.classList.remove("invalid-email");
+  } else {
+    input.classList.add("invalid-email");
+  }
+}
+
+/**
+ * Renders the list of contacts for the active user.
+ * @param {Array} activeUserContacts - An array of objects representing the contacts of the active user.
+ */
+function renderContactList(activeUserContacts) {
+  let content = document.getElementById("contact-list");
+  content.innerHTML = "";
+
+  for (let i = 0; i < activeUserContacts.length; i++) {
+    let name = activeUserContacts[i]["name"];
+    content.innerHTML += `
+        <div class="dropdown-contact">
+        <label for="${name}">${name}</label>
+        <input type="checkbox" id="${name}" name="assign-contacts" value="${name}">
+    </div>`;
+  }
+}
+
+/**
+ * Renders the list of contacts for the active user.
+ * @param {Array} activeUserContacts - An array of objects representing the contacts of the active user.
+ */
+function renderContactList(activeUserContacts) {
+  let content = document.getElementById("contact-list");
+  content.innerHTML = "";
+
   for (let i = 0; i < activeUserContacts.length; i++) {
     let name = activeUserContacts[i]["name"];
     content.innerHTML += `

@@ -2,7 +2,7 @@ let contact = [];
 let emails = [];
 let newmail;
 let newContact = {};
-let alphabetLetters = []; //takes all first letters of activeUserContacts in alphabetically order
+let alphabetLetters = []; 2//takes all first letters of activeUserContacts in alphabetically order
 let priorLetter; //sets the last letter for the Alphabet Registery
 
 /**
@@ -53,7 +53,7 @@ function checkIfNewContactEmailExists(newmail) {
   for (let i = 0; i < mailarray.length; i++) {
     let mail = mailarray[i];
     if (mail == newmail) {
-      return true, newmail;
+      return newmail;
     }
   }
 }
@@ -135,13 +135,10 @@ function sortActiveUserContacts() {
   activeUserContacts.sort((a, b) => {
     const nameA = a.name.toUpperCase(); // ignore upper and lowercase
     const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-    if (nameA < nameB) {
+    if (nameA < nameB)
       return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
-    }
-    // names must be equal
+    if (nameA > nameB)
+      return 1;    // names must be equal
     return 0;
   });
 }
@@ -177,11 +174,11 @@ function getIndexOfEmail(newmail) {
 function setContactInitials(newName) {
   var names = newName.split(" "),
     initials = names[0].substring(0, 1).toUpperCase();
-  if (names.length > 1) {
+  if (names.length > 1)
     initials += names[names.length - 1].substring(0, 1).toUpperCase();
-  } else if (names.length == 1) {
+   else if (names.length == 1)
     initials = newName.substring(0, 2).toUpperCase();
-  }
+
   return initials;
 }
 
@@ -197,15 +194,15 @@ function setColorForInitial(initials) {
     number = number + letterNumber;
   }
   let remainder = number % 5;
-  if (remainder === 0) {
+  if (remainder === 0)
     return "rgb(221,70,60)";
-  } else if (remainder === 1) {
+   else if (remainder === 1)
     return "rgb(252,188,201)";
-  } else if (remainder === 2) {
+   else if (remainder === 2)
     return "rgb(99,191,215)";
-  } else if (remainder === 3) {
+   else if (remainder === 3)
     return "rgb(253,197,38)";
-  } else return "rgb(128,168,77)";
+   else return "rgb(128,168,77)";
 }
 
 async function deleteContact(index) {

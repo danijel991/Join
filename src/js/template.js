@@ -104,14 +104,6 @@ function generateTaskModalHTML(task) {
       `;
 }
 
-//   <form action="">
-//       <label for="tasks">Move task to:</label>
-//       <select class="tasks_moveTo" id="tasks_moveTo" value="Move">
-
-//       </select>
-//       <input type="submit" value="Move">
-//   </form>
-
 function generateTaskModalContactsHTML(contactInitials, contact, color) {
   return `
           <div class="assigned-contact-row">
@@ -143,20 +135,10 @@ function generateEditTaskHTML(task) {
                               <textarea class="edit-description" name="" id="edit-description${task["id"]}" cols="30" rows="5"
                                   placeholder="Enter a Description">${task["description"]}</textarea>
                           </div>
-
-
-
-                          
                           <div class="task-process-main-div">
                               <span class="category-header">Task Process-Status</span>
                               <select class="tasks_moveTo" id="tasks_moveTo" value="Move"></select>
                               </div>
-                              
-              
-                           
-                         
-
-
                           <div class="date-area flex-column margin-btn-45">
                               <span class="category-header">Due date</span>
                               <input id="edit-date${task["id"]}" class="uniform-sizing date" type="date" value="${task["dueDate"]}">
@@ -184,7 +166,6 @@ function generateEditTaskHTML(task) {
                                   </label>
                               </button>
                           </div>
-
                           <div class="input-check" id="subtask-edit-container"></div>
 
                           <div class="uniform-sizing text-19pt dropdown" role="button" data-bs-toggle="collapse"
@@ -192,11 +173,8 @@ function generateEditTaskHTML(task) {
                               <span>Select contacts to assign</span>
                               <img src="../img/select-arrow.png" alt="">
                           </div>
-
                           <div class="assigned-contacts-initials" id="assigned-contacts">  
                           </div>
-  
-                          
                           <div class="subtasks-input-area d-none" id="contact-input-area-edit">
                               <input class="" type="email" placeholder="Contact email" id="contact-input-edit" required>
                               <div class="subtask-icons">
@@ -209,9 +187,6 @@ function generateEditTaskHTML(task) {
                           </div>
                           <div class="margin-btn-25 assign-contact-container" id="contact-container-edit">
                               <div class="dropdown-contacts-container collapse scroll" id="collapseContactsEdit">
-
-  
-  
                                   <div class="dropdown-contact" onclick="openContactInput('contact-dropdown-edit', 'contact-input-area-edit', 'contact-input-edit')" role="button" data-bs-toggle="collapse"
                                   data-bs-target="#collapseContactsEdit" aria-expanded="false" aria-controls="collapseContactsEdit" id="contact-dropdown-edit">
                                       <label for="">Invite new contact</label>

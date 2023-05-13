@@ -84,6 +84,11 @@ function renderBoardStatistics() {
   filterTasksToDo();
 }
 
+/**
+ * 
+ * @returns this renders all tasks in board
+ */
+
 function renderTaskInBoard() {
   return (document.getElementById("task-in-board").innerHTML = `${tasks.length}`);
 }
@@ -123,7 +128,6 @@ function filterTasksUrgent() {
   return (document.getElementById("tasks-urgent").innerHTML = `${filteredItems.length}`);
 }
 
-
 //////////////// HELPER-FUNCTIONS ////////////////////
 function createDate() {
   let date = new Date();
@@ -134,7 +138,6 @@ function createDate() {
   };
   return fullDate;
 }
-
 
 function fromSummaryToBoard() {
   let params = new URLSearchParams(window.location.search);

@@ -137,7 +137,6 @@ async function getActiveUserURL(emailUser) {
     let params = new URLSearchParams();
     params.append("first", first);
     params.append("second", JSON.stringify(second));
-    console.log(params)
     return params;
 }
 
@@ -312,35 +311,54 @@ function checkIfEmailExists(emailUser) {
     return findEmailIndex;
 }
 
-
 /**
  * The function is changing the icon of the password.
  */
 function checkPasswordImg() {
     let state = undefined;
-    setInterval(() => {
-        let a = 0;
-        let input = document.getElementById('password');
-        let img = document.getElementById('password__img');
-        if (input.value.length > a && passwordVisible) {
-            if (state === "visible") {
-                visiblePasswordImg(input, img);
-                state = "visible";
-            }
-        } else if (input.value.length > a && !passwordVisible) {
-            if (state === "hidden") {
-            hiddenPasswordImg(input, img);
-                state = "hidden";
-            }
-        } else {
-            if (state === "default") {
-            defaultPasswordImg(img);
-                state = "default";
-            }
-        }
-    }, 100)
-}
+    let a = 0; // declare 'a' outside of setInterval so it can be accessed by other functions
+    let input = document.getElementById('password');
+    let img = document.getElementById('password__img');
 
+    setInterval(() => {
+        if (isPasswordVisible()) {
+            passwordIsVisible();
+        } else if (isPasswordNotVisible()) {
+            passwordIsNotVisible();
+        } else {
+            defaultPasswordImage();
+        }
+    }, 100);
+
+    function isPasswordVisible() {
+        return input.value.length > a && passwordVisible; // 'passwordVisible' variable is not defined, assuming it's declared elsewhere
+    }
+
+    function isPasswordNotVisible() {
+        return input.value.length > a && !passwordVisible; // 'passwordVisible' variable is not defined, assuming it's declared elsewhere
+    }
+
+    function defaultPasswordImage() {
+        if (state !== "default") {
+            defaultPasswordImg(img);
+            state = "default";
+        }
+    }
+
+    function passwordIsVisible() {
+        if (state !== "visible") {
+            visiblePasswordImg(input, img);
+            state = "visible";
+        }
+    }
+
+    function passwordIsNotVisible() {
+        if (state !== "hidden") {
+            hiddenPasswordImg(input, img);
+            state = "hidden";
+        }
+    }
+}
 
 /**
  * The function in changing to password icon
@@ -367,7 +385,6 @@ function hiddenPasswordImg(input, img) {
     input.type = "password";
 }
 
-
 /**
  * The function in changing to password icon
  * 
@@ -378,14 +395,9 @@ function defaultPasswordImg(img) {
     img.src = "./src/img/input_password.png";
 }
 
-
 /**
  * The function chnages the password from not readable to readable.
  */
 function changeViewPassword() {
-    if (passwordVisible === false) {
-        passwordVisible = true;
-    } else {
-        passwordVisible = false;
-    }
+    passwordVisible = !passwordVisible;
 }
