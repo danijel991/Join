@@ -20,30 +20,6 @@ function slideOut() {
   document.getElementById("contact-detail").classList.remove("slide-in");
 }
 
-/**
- * function calls helper functions to render all contacts in a list
- */
-function renderContactList() {
-  sortActiveUserContacts();
-  let firstLetters = activeUserContacts.map((item) => item.initials[0]);
-
-  let content = document.getElementById("contact-list");
-  content.innerHTML = " ";
-
-  for (let i = 0; i < activeUserContacts.length; i++) {
-    renderRegistery(i, firstLetters);
-    content.innerHTML += `
-        <div class="contact-box" onclick="openContactDetail(${i})">
-        <div class="letters" style="background-color: ${activeUserContacts[i]["initialsColor"]}">${activeUserContacts[i]["initials"]}</div>
-        <div class="word-break">
-        <div>${activeUserContacts[i]["name"]}</div>
-        <div>${activeUserContacts[i]["email"]}</div>
-        <div>${activeUserContacts[i]["phone"]}</div>
-        </div>
-        </div>
-        `;
-  }
-}
 
 /**
  *
@@ -347,20 +323,27 @@ function renderNewContact(id) {
 }
 
 /**
- * Renders the list of contacts for the active user.
- * @param {Array} activeUserContacts - An array of objects representing the contacts of the active user.
+ * function calls helper functions to render all contacts in a list
  */
-function renderContactList(activeUserContacts) {
+function renderContactListFromContacts() {
+  sortActiveUserContacts();
+  let firstLetters = activeUserContacts.map((item) => item.initials[0]);
+
   let content = document.getElementById("contact-list");
-  content.innerHTML = "";
+  content.innerHTML = " ";
 
   for (let i = 0; i < activeUserContacts.length; i++) {
-    let name = activeUserContacts[i]["name"];
+    renderRegistery(i, firstLetters);
     content.innerHTML += `
-        <div class="dropdown-contact">
-        <label for="${name}">${name}</label>
-        <input type="checkbox" id="${name}" name="assign-contacts" value="${name}">
-    </div>`;
+        <div class="contact-box" onclick="openContactDetail(${i})">
+        <div class="letters" style="background-color: ${activeUserContacts[i]["initialsColor"]}">${activeUserContacts[i]["initials"]}</div>
+        <div class="word-break">
+        <div>${activeUserContacts[i]["name"]}</div>
+        <div>${activeUserContacts[i]["email"]}</div>
+        <div>${activeUserContacts[i]["phone"]}</div>
+        </div>
+        </div>
+        `;
   }
 }
 
@@ -372,15 +355,50 @@ function renderContactList(activeUserContacts) {
   let content = document.getElementById("contact-list");
   content.innerHTML = "";
 
-  for (let i = 0; i < activeUserContacts.length; i++) {
-    let name = activeUserContacts[i]["name"];
-    content.innerHTML += `
+  if (activeUserContacts && activeUserContacts.length > 0) {
+    for (let i = 0; i < activeUserContacts.length; i++) {
+      let name = activeUserContacts[i]["name"];
+      content.innerHTML += `
         <div class="dropdown-contact">
         <label for="${name}">${name}</label>
         <input type="checkbox" id="${name}" name="assign-contacts" value="${name}">
-    </div>`;
+      </div>`;
+    }
+  } else {
+    content.innerHTML = "<p>No contacts found.</p>";
   }
 }
+
+
+/**
+ * Adds a new contact to the contact list.
+ * @param {string} email - The email of the new contact.
+ */
+function addNewContactToList(email) {
+  let content = document.getElementById("contact-list");
+  content.innerHTML += `
+      <div class="dropdown-contact">
+        <label for="${email}">${email}</label>
+        <input type="checkbox" id="${email}" name="assign-contacts" value="${email}">
+      </div>
+    `;
+}
+
+/**
+ * Renders a new contact input field to the task creation form.
+ * @param {number} id - The id of the new contact.
+ */
+function renderNewContact(id) {
+  const input = document.getElementById(`new-contact-${id}`);
+  const email = input.value;
+  if (email && input.checkValidity()) {
+    addNewContactToList(email);
+    input.classList.remove("invalid-email");
+  } else {
+    input.classList.add("invalid-email");
+  }
+}
+
 
 /**
  * function renders all active user contacs into Contacts Edit DropDown

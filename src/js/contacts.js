@@ -10,7 +10,7 @@ let priorLetter; //sets the last letter for the Alphabet Registery
  */
 async function loadAllContacts() {
   await init();
-  renderContactList();
+  renderContactListFromContacts();
 }
 
 /**
@@ -176,7 +176,7 @@ function setContactInitials(newName) {
     initials = names[0].substring(0, 1).toUpperCase();
   if (names.length > 1)
     initials += names[names.length - 1].substring(0, 1).toUpperCase();
-   else if (names.length == 1)
+  else if (names.length == 1)
     initials = newName.substring(0, 2).toUpperCase();
 
   return initials;
@@ -196,13 +196,13 @@ function setColorForInitial(initials) {
   let remainder = number % 5;
   if (remainder === 0)
     return "rgb(221,70,60)";
-   else if (remainder === 1)
+  else if (remainder === 1)
     return "rgb(252,188,201)";
-   else if (remainder === 2)
+  else if (remainder === 2)
     return "rgb(99,191,215)";
-   else if (remainder === 3)
+  else if (remainder === 3)
     return "rgb(253,197,38)";
-   else return "rgb(128,168,77)";
+  else return "rgb(128,168,77)";
 }
 
 async function deleteContact(index) {
