@@ -261,8 +261,8 @@ function inviteContact() {
   let emailInputId = `new-contact-${counter}`;
   content.innerHTML += `
     <div class="dropdown-contact" id="inviteContact${counter}">
-      <div class="inviteContact">
-        <input type="email" name="email" id="${emailInputId}" class="form-control logIn__input" placeholder="Enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+      <div class="inviteContact" id="inviteContacts${counter}">
+        <input type="email" name="email${counter}" id="${emailInputId}" class="form-control logIn__input" placeholder="Enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
         <div class="inviteContactClickables">
           <img onclick="deleteAddContactBtn(${counter})" class="cursor-pointer" src="../img/cancel-subtask.png" alt="">
           <img onclick="renderNewContact(${counter})" class="cursor-pointer" src="../img/check-subtask.png" alt="">
@@ -375,28 +375,13 @@ function renderContactList(activeUserContacts) {
  * @param {string} email - The email of the new contact.
  */
 function addNewContactToList(email) {
-  let content = document.getElementById("contact-list");
+  let content = document.getElementById("inviteContact${email}");
   content.innerHTML += `
       <div class="dropdown-contact">
         <label for="${email}">${email}</label>
         <input type="checkbox" id="${email}" name="assign-contacts" value="${email}">
       </div>
     `;
-}
-
-/**
- * Renders a new contact input field to the task creation form.
- * @param {number} id - The id of the new contact.
- */
-function renderNewContact(id) {
-  const input = document.getElementById(`new-contact-${id}`);
-  const email = input.value;
-  if (email && input.checkValidity()) {
-    addNewContactToList(email);
-    input.classList.remove("invalid-email");
-  } else {
-    input.classList.add("invalid-email");
-  }
 }
 
 

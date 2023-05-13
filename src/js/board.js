@@ -29,12 +29,10 @@ async function initBoard() {
  */
 function addToBoard() {
   if (!taskAddedAtAddTaskHTML) {
-    // console.time("Board Loading Time");
     filterAllTasks();
     generateTemplate();
     updateProgressBars();
     updateProgressReport();
-    // console.timeEnd("Board Loading Time");
   }
 }
 
