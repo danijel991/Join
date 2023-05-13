@@ -214,4 +214,5 @@ async function deleteContact(index) {
   await loadAllContacts();
   clearContent();
   slideOut();
+  closeAddContactDialog();
 }

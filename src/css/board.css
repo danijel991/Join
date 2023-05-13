@@ -1323,6 +1323,14 @@ input[type="checkbox"]:checked {
         width: 360px !important;
     }
 
+    #add-task-modal>div>div>button>span.d-none-resp.task-d\.none {
+        display: none !important;
+    }
+
+    #add-task-modal>div>div>button {
+        width: 125px;
+    }
+
     .add-task-header-bottom {
         width: 411px !important;
     }
@@ -1441,6 +1449,22 @@ input[type="checkbox"]:checked {
     .assigned-contacts {
         width: 250px;
     }
+}
+
+@media (max-width: 420px) {
+    #exampleModalLabel {
+        position: fixed;
+        left: 5%;
+        top: 8%;
+        font-weight: 400;
+    }
+
+    #add-task-modal > div > div > button {
+        position: fixed;
+        right: 6%;
+        top: 7%;
+    }
+
 }
 
 @media (max-width: 340px) {

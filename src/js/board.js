@@ -50,9 +50,11 @@ function filterTasks(array, id) {
   for (let i = 0; i < filter.length; i++) {
     const task = filter[i];
     document.getElementById(id).innerHTML += generateTodoHTML(task);
-    for (let j = 0; j < task["assignedTo"].length; j++) {
-      const assignedContacts = task["assignedTo"][j];
-      renderAllAssignedContacts(j, task, assignedContacts);
+    if (task.assignedTo) {
+      for (let j = 0; j < task["assignedTo"].length; j++) {
+        const assignedContacts = task["assignedTo"][j];
+        renderAllAssignedContacts(j, task, assignedContacts);
+      }
     }
   }
 }

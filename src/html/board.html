@@ -52,15 +52,14 @@
                     <img class="close-icon" src="../img/add-task-close-icon.png"
                         onclick="closeAddTaskDialog('add-task-modal', 'add-task-overlay')">
                     <div class="add-task-header-bottom">
-                        <h2 class="add-task-title" id="exampleModalLabel">Add Task</h2>
+                        <h2 class="add-task-title" id="exampleModalLabel">Add Task</h2>                        <button class="add-task-btn-create add-task-right-button-right" type="button"
+                        onclick="createTask(false);"><span>Create
+                        </span><span class="d-none-resp task-d.none">task</span>
+                        <img src="../img/check-icon.png" alt="add-icon">
+                    </button>
                     </div>
-                    <form class="add-task-form" onsubmit="createTask(false); return false;">
-                        <button value="submit" type="submit" class="btn-add-task btn-create-task">Create task
-                            <img src="../img/check-icon.png" alt="add-icon">
-                        </button>
-                        <button value="submit" type="submit" class="btn-add-task btn-create-task-resp">Create
-                            <img src="../img/check-icon.png" alt="add-icon">
-                        </button>
+                    <form class="add-task-form">
+
                         <div class="form-width input-title margin-btn-25">
                             <input class="add-title input-title-font" type="text" placeholder="Enter a title" id="title"
                                 required>
@@ -68,9 +67,8 @@
                         <div class="uniform-sizing text-19pt dropdown" role="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseContacts" aria-expanded="false" aria-controls="collapseContacts"
                             id="contact-dropdown">
-                            <input type="text" id="placeboInput">
-                            <span>Select contacts to assign</span>
-                            <img src="../img/select-arrow.png" alt="">
+                            <input type="text" id="contactsValidation" class="placeboInput">
+                            <span>Select contacts to assign</span> <img src="../img/select-arrow.png" alt="">
                         </div>
                         <div class="subtasks-input-area d-none" id="contact-input-area">
                             <input class="" type="email" placeholder="Contact email" id="contact-input">
@@ -100,6 +98,7 @@
                         </div>
                         <div class="category-area flex-column">
                             <span class="category-header">Category</span>
+                            <input type="text" id="categoryValidation" class="placeboInput">
                             <div class="uniform-sizing text-19pt dropdown" role="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseCategory" aria-expanded="false"
                                 aria-controls="collapseCategory" id="category-dropdown">
@@ -154,6 +153,7 @@
                             </div>
                         </div>
                         <div class="button-area margin-btn-25">
+                            <input type="text" id="urgencyValidation" class="placeboInput">
                             <button type="button" value="high" class="add-task-prio-high" id="high"
                                 onclick="checkButton('high')" onmouseover="hoverButton('high')"
                                 onmouseleave="leaveHoverButton('high')">
